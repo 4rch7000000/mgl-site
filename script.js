@@ -1,489 +1,664 @@
-// MGL SYSTEM CORE
-// RECOVERY MODE
-
-
-let logoClicks = 0;
-
-const logo = document.getElementById("logo");
-const archive = document.getElementById("archive");
-
-
-
-
-// =====================
-// ARCHIVE RECOVERED
-// =====================
-
-
-logo.addEventListener("click",()=>{
-
-
-logoClicks++;
-
-
-if(logoClicks >= 7){
-
-
-archive.style.display="flex";
-
-
-
-let glitch = setInterval(()=>{
-
-
-archive.innerHTML = 
-Math.random()>0.5 ?
-
-"ARCHIVE RECOVERED"
-
-:
-
-"ARCH1VE_REC0VERED";
-
-
-},50);
-
-
-
-setTimeout(()=>{
-
-
-clearInterval(glitch);
-
-archive.style.display="none";
-
-
-},6000);
-
-
-
-logoClicks=0;
-
-
+* {
+    box-sizing:border-box;
 }
 
 
+body {
 
-});
+    margin:0;
 
+    background:#000;
 
+    color:#fff;
 
+    font-family:monospace;
 
-
-// =====================
-// RANDOM SYSTEM ERRORS
-// =====================
-
-
-const events=[
-
-"signal lost",
-
-"recovering",
-
-"who is arch?",
-
-"audio recovered",
-
-"file corrupted",
-
-"connection lost",
-
-"memory fragment found"
-
-];
-
-
-
-function systemFlash(){
-
-
-let flash=document.getElementById("flash");
-
-
-flash.innerHTML=
-events[
-Math.floor(Math.random()*events.length)
-];
-
-
-
-flash.style.display="flex";
-
-
-
-let duration =
-Math.floor(Math.random()*500)+100;
-
-
-
-setTimeout(()=>{
-
-
-flash.style.display="none";
-
-
-},duration);
-
-
+    overflow:hidden;
 
 }
 
 
 
 
-setInterval(()=>{
 
+/* SYSTEM START */
 
-let chance=Math.random();
+#system {
 
+    position:fixed;
 
-if(chance < 0.12){
+    inset:0;
 
+    background:#000;
 
-systemFlash();
+    display:flex;
 
+    justify-content:center;
 
-}
+    align-items:center;
 
+    text-align:center;
 
-},5000);
+    font-size:22px;
 
+    letter-spacing:5px;
 
+    z-index:99999;
 
-
-
-
-
-// =====================
-// TERMINAL
-// =====================
-
-
-
-const terminal=
-document.getElementById("terminal");
-
-
-const input=
-document.getElementById("terminalInput");
-
-
-const output=
-document.getElementById("terminalOutput");
-
-
-
-
-document.addEventListener("keydown",(e)=>{
-
-
-if(e.key==="t" || e.key==="T"){
-
-
-terminal.style.display="block";
-
-
-input.focus();
-
+    animation:boot 4s forwards;
 
 }
 
 
 
-if(e.key==="Control"){
+@keyframes boot {
+
+    0% {
+        opacity:1;
+    }
 
 
-terminal.style.display="none";
+    80% {
+        opacity:1;
+    }
+
+
+    100% {
+
+        opacity:0;
+
+        pointer-events:none;
+
+    }
+
+}
+
+
+
+
+
+
+/* SCREEN EFFECTS */
+
+
+.scan {
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+    repeating-linear-gradient(
+
+    0deg,
+
+    transparent 0px,
+
+    transparent 3px,
+
+    rgba(255,255,255,.12) 4px
+
+    );
+
+    z-index:20;
+
+    pointer-events:none;
+
+}
+
+
+
+.noise {
+
+    position:fixed;
+
+    inset:0;
+
+    opacity:.05;
+
+    background:
+
+    repeating-linear-gradient(
+
+    90deg,
+
+    white 0px,
+
+    white 1px,
+
+    transparent 2px,
+
+    transparent 5px
+
+    );
+
+
+    animation:noise .15s infinite;
+
+}
+
+
+
+
+@keyframes noise {
+
+    0% {
+
+        transform:translateX(0);
+
+    }
+
+
+    50% {
+
+        transform:translateX(-10px);
+
+    }
+
+
+    100% {
+
+        transform:translateX(10px);
+
+    }
+
+}
+
+
+
+
+
+
+/* LOGO */
+
+
+#logo {
+
+    position:fixed;
+
+    top:20px;
+
+    left:25px;
+
+    font-size:40px;
+
+    cursor:pointer;
+
+    z-index:100;
+
+    animation:flicker 2s infinite;
+
+}
+
+
+
+#clock {
+
+    position:fixed;
+
+    top:25px;
+
+    right:30px;
+
+    font-size:18px;
+
+}
+
+
+
+
+
+/* MAIN */
+
+
+main {
+
+    text-align:center;
+
+    padding-top:120px;
+
+}
+
+
+
+h1 {
+
+    font-size:65px;
+
+    letter-spacing:15px;
+
+    animation:flicker 3s infinite;
+
+}
+
+
+
+
+
+#status {
+
+    margin-top:30px;
+
+    opacity:.7;
+
+}
+
+
+
+
+
+/* ARTISTS */
+
+
+section {
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+    margin-top:80px;
+
+}
+
+
+
+
+.artist {
+
+    width:180px;
+
+    height:120px;
+
+    border:2px solid white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+
+
+.artist:hover {
+
+
+    background:white;
+
+    color:black;
+
+    transform:skew(-12deg);
+
+}
+
+
+
+
+
+
+/* AUDIO */
+
+
+#audio {
+
+    margin-top:60px;
+
+}
+
+
+
+#audio a {
+
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:12px 30px;
+
+    border:2px solid white;
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+
+
+#audio a:hover {
+
+    background:white;
+
+    color:black;
+
+}
+
+
+
+
+
+#terminalHint {
+
+    position:fixed;
+
+    bottom:20px;
+
+    left:25px;
+
+    opacity:.6;
+
+}
+
+
+
+
+
+/* TERMINAL */
+
+
+#terminal {
+
+
+    display:none;
+
+
+    position:fixed;
+
+
+    inset:12%;
+
+
+    background:black;
+
+
+    border:2px solid white;
+
+
+    z-index:5000;
+
+
+    padding:20px;
 
 
 }
 
 
 
-});
+.terminalHead {
 
 
+    border-bottom:1px solid white;
 
+    padding-bottom:15px;
 
+}
 
 
 
-// COMMANDS
+.terminalHead span {
 
+    float:right;
 
-input.addEventListener("keydown",(e)=>{
+}
 
 
-if(e.key==="Enter"){
 
 
+#terminalOutput {
 
-let command=input.value;
+    margin-top:20px;
 
+    line-height:25px;
 
+}
 
-output.innerHTML +=
-"\n>" + command;
 
 
 
-switch(command){
+#terminalInput {
 
 
+    width:100%;
 
-case ">help":
+    background:black;
 
+    border:none;
 
-output.innerHTML +=`
+    color:white;
 
+    outline:none;
 
+    font-family:monospace;
 
+    font-size:18px;
 
-MGL LOST MEDIA DATABASE
+}
 
 
-====================
 
 
-ARCH:
 
-- там где не пройти можно упасть
+/* ARCHIVE */
 
 
-NASTY:
+#archive {
 
-- Weirdo12
 
+    display:none;
 
-CODE31:
 
-- Broken vinyl
+    position:fixed;
 
 
-TWELVE:
+    inset:0;
 
-- IDONTWANNABEANYNMORE
 
+    background:#000;
 
-STYLE:
 
-- 505
+    z-index:9000;
 
 
-PS4:
+    justify-content:center;
 
-- Clear
 
+    align-items:center;
 
 
-END OF ARCHIVE
+    text-align:center;
 
 
+    font-size:60px;
 
-`;
 
-break;
-
-
-
-
-
-
-case ">void":
-
-
-output.innerHTML +=`
-
-
-VOID ACCESS GRANTED
-
-
-
-THEY ARE DEAD.
-
-
-THERE ARE GONE.
-
-
-
-THEY ARE DEAD.
-
-
-THERE ARE GONE.
-
-
-
-THEY ARE DEAD.
-
-
-THERE ARE GONE.
-
-
-
-THE SIGNAL REMAINS.
-
-
-
-
-
-
-`;
-
-break;
-
-
-
-
-
-case ">clear":
-
-
-output.innerHTML=">";
-
-break;
-
-
-
-
-
-case ">who":
-
-
-output.innerHTML+=`
-
-
-UNKNOWN ENTITY:
-
-
-ARCH
-
-
-STATUS:
-
-
-MISSING
-
-
-
-`;
-
-break;
-
-
-
-
-
-default:
-
-
-output.innerHTML+=`
-
-UNKNOWN COMMAND
-
-TYPE >help
-
-
-`;
-
+    animation:broken .15s infinite;
 
 
 }
 
 
 
-input.value="";
+
+
+
+
+/* VOID */
+
+
+#void {
+
+
+    display:none;
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    background:white;
+
+
+    color:black;
+
+
+    z-index:10000;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    text-align:center;
+
+
+    font-size:80px;
+
+
+    font-weight:bold;
 
 
 }
 
 
 
-});
 
 
 
 
+/* RANDOM EVENTS */
 
 
-
-// =====================
-// RANDOM SCREEN DAMAGE
-// =====================
+#event {
 
 
-
-setInterval(()=>{
-
-
-if(Math.random()<0.2){
+    display:none;
 
 
-document.body.style.transform=
-
-`
-translate(
-${Math.random()*6-3}px,
-${Math.random()*6-3}px
-)
-`;
+    position:fixed;
 
 
-
-setTimeout(()=>{
-
-
-document.body.style.transform="";
+    inset:0;
 
 
-},80);
+    background:black;
 
+
+    color:white;
+
+
+    z-index:11000;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    font-size:70px;
 
 
 }
 
 
 
-},3000);
+
+
+
+
+.flash {
+
+    animation:flash .1s;
+
+}
+
+
+
+@keyframes flash {
+
+
+    from {
+
+        background:white;
+
+    }
+
+
+    to {
+
+        background:black;
+
+    }
+
+}
 
 
 
 
 
 
-// =====================
-// BOOT TEXT RANDOMIZATION
-// =====================
+@keyframes flicker {
 
 
-let boot=document.querySelector("#boot div");
+    0%,20%,40%,100% {
+
+        opacity:1;
+
+    }
 
 
-let bootMessages=[
+    30% {
 
-"MGL SYSTEM",
+        opacity:.2;
 
-"RECOVERING DATA",
+    }
 
-"SEARCHING ARCHIVE",
-
-"LOADING LOST FILES",
-
-"ACCESSING VOID"
-
-];
+}
 
 
-setInterval(()=>{
 
 
-boot.innerHTML=
-
-bootMessages[
-Math.floor(Math.random()*bootMessages.length)
-]
-+
-"<br><br>████████████ 100%";
 
 
-},700);
+@keyframes broken {
+
+
+    0% {
+
+        transform:translate(0);
+
+    }
+
+
+    50% {
+
+        transform:translate(15px,-5px);
+
+    }
+
+
+    100% {
+
+        transform:translate(-10px,5px);
+
+    }
+
+}
