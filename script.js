@@ -1,491 +1,222 @@
-* {
-    box-sizing:border-box;
-}
+const terminal = document.getElementById("terminal");
+const input = document.getElementById("terminalInput");
+const output = document.getElementById("terminalOutput");
 
+const logo = document.getElementById("logo");
+const archive = document.getElementById("archive");
+const voidScreen = document.getElementById("void");
+const eventScreen = document.getElementById("event");
 
-body {
-
-    margin:0;
-
-    background:#000;
-
-    color:#fff;
-
-    font-family:monospace;
-
-    overflow:hidden;
-
-}
+let clicks = 0;
 
 
 
+// CLOCK
 
+setInterval(()=>{
 
-/* SYSTEM START */
+    document.getElementById("clock").innerHTML =
+    new Date().toLocaleTimeString();
 
-#system {
-
-    position:fixed;
-
-    inset:0;
-
-    background:#000;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    font-size:22px;
-
-    letter-spacing:5px;
-
-    z-index:99999;
-
-    animation:boot 4s forwards;
-
-}
+},1000);
 
 
 
-@keyframes boot {
-
-    0% {
-        opacity:1;
-    }
 
 
-    80% {
-        opacity:1;
-    }
+// TERMINAL OPEN
+
+document.addEventListener("keydown", e=>{
 
 
-    100% {
+    if(e.key.toLowerCase()=="t"){
 
-        opacity:0;
+        terminal.style.display="block";
 
-        pointer-events:none;
+        input.focus();
 
     }
 
-}
 
 
+    if(e.key=="Control"){
 
-
-
-
-/* SCREEN EFFECTS */
-
-
-.scan {
-
-    position:fixed;
-
-    inset:0;
-
-    background:
-
-    repeating-linear-gradient(
-
-    0deg,
-
-    transparent 0px,
-
-    transparent 3px,
-
-    rgba(255,255,255,.12) 4px
-
-    );
-
-    z-index:20;
-
-    pointer-events:none;
-
-}
-
-
-
-.noise {
-
-    position:fixed;
-
-    inset:0;
-
-    opacity:.05;
-
-    background:
-
-    repeating-linear-gradient(
-
-    90deg,
-
-    white 0px,
-
-    white 1px,
-
-    transparent 2px,
-
-    transparent 5px
-
-    );
-
-
-    animation:noise .15s infinite;
-
-}
-
-
-
-
-@keyframes noise {
-
-    0% {
-
-        transform:translateX(0);
+        terminal.style.display="none";
 
     }
 
 
-    50% {
+});
 
-        transform:translateX(-10px);
+
+
+
+
+
+
+// TERMINAL COMMANDS
+
+
+input.addEventListener("keydown", e=>{
+
+
+    if(e.key=="Enter"){
+
+
+        let cmd=input.value.toLowerCase().trim();
+
+
+        output.innerHTML += "<br>>"+cmd;
+
+
+
+        if(cmd=="help"){
+
+
+            output.innerHTML += `
+
+<br><br>
+
+MGL LOST FILES:
+
+<br><br>
+
+там где не пройти можно упасть
+
+<br>
+
+Weirdo12
+
+<br>
+
+Broken vinyl
+
+<br>
+
+IDONTWANNABEANYNMORE
+
+<br>
+
+505
+
+<br>
+
+Clear
+
+`;
+
+        }
+
+
+
+
+        if(cmd=="void"){
+
+
+            terminal.style.display="none";
+
+
+            voidEvent();
+
+
+        }
+
+
+
+
+        if(cmd=="clear"){
+
+
+            output.innerHTML=">";
+
+        }
+
+
+
+        input.value="";
 
     }
 
 
-    100% {
+});
 
-        transform:translateX(10px);
 
-    }
 
-}
 
 
 
 
 
 
-/* LOGO */
+// VOID EVENT
 
 
-#logo {
+function voidEvent(){
 
-    position:fixed;
 
-    top:20px;
+    let frames=[
 
-    left:25px;
+    "SIGNAL LOST",
 
-    font-size:40px;
+    "NO USER FOUND",
 
-    cursor:pointer;
+    "FILE: DEAD",
 
-    z-index:100;
+    "WHO IS ARCH?"
 
-    animation:flicker 2s infinite;
+    ];
 
-}
 
 
+    let i=0;
 
-#clock {
 
-    position:fixed;
 
-    top:25px;
+    let interval=setInterval(()=>{
 
-    right:30px;
 
-    font-size:18px;
+        eventScreen.style.display="flex";
 
-}
+        eventScreen.innerHTML=frames[i];
 
 
+        i++;
 
 
+        if(i>=frames.length){
 
-/* MAIN */
 
+            clearInterval(interval);
 
-main {
 
-    text-align:center;
 
-    padding-top:120px;
+            setTimeout(()=>{
 
-}
 
+                eventScreen.style.display="none";
 
 
-h1 {
+                voidScreen.style.display="flex";
 
-    font-size:65px;
 
-    letter-spacing:15px;
 
-    animation:flicker 3s infinite;
+                setTimeout(()=>{
 
-}
 
+                    voidScreen.style.display="none";
 
 
+                },5000);
 
 
-#status {
 
-    margin-top:30px;
+            },300);
 
-    opacity:.7;
 
-}
+        }
 
 
-
-
-
-/* ARTISTS */
-
-
-section {
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:25px;
-
-    flex-wrap:wrap;
-
-    margin-top:80px;
-
-}
-
-
-
-
-.artist {
-
-    width:180px;
-
-    height:120px;
-
-    border:2px solid white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:25px;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-
-
-.artist:hover {
-
-
-    background:white;
-
-    color:black;
-
-    transform:skew(-12deg);
-
-}
-
-
-
-
-
-
-/* AUDIO */
-
-
-#audio {
-
-    margin-top:60px;
-
-}
-
-
-
-#audio a {
-
-
-    display:inline-block;
-
-    margin-top:15px;
-
-    padding:12px 30px;
-
-    border:2px solid white;
-
-    color:white;
-
-    text-decoration:none;
-
-}
-
-
-
-#audio a:hover {
-
-    background:white;
-
-    color:black;
-
-}
-
-
-
-
-
-#terminalHint {
-
-    position:fixed;
-
-    bottom:20px;
-
-    left:25px;
-
-    opacity:.6;
-
-}
-
-
-
-
-
-/* TERMINAL */
-
-
-#terminal {
-
-
-    display:none;
-
-
-    position:fixed;
-
-
-    inset:12%;
-
-
-    background:black;
-
-
-    border:2px solid white;
-
-
-    z-index:5000;
-
-
-    padding:20px;
-
-
-}
-
-
-
-.terminalHead {
-
-
-    border-bottom:1px solid white;
-
-    padding-bottom:15px;
-
-}
-
-
-
-.terminalHead span {
-
-    float:right;
-
-}
-
-
-
-
-#terminalOutput {
-
-    margin-top:20px;
-
-    line-height:25px;
-
-}
-
-
-
-
-#terminalInput {
-
-
-    width:100%;
-
-    background:black;
-
-    border:none;
-
-    color:white;
-
-    outline:none;
-
-    font-family:monospace;
-
-    font-size:18px;
-
-}
-
-
-
-
-
-/* ARCHIVE */
-
-
-#archive {
-
-
-    display:none;
-
-
-    position:fixed;
-
-
-    inset:0;
-
-
-    background:#000;
-
-
-    z-index:9000;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    text-align:center;
-
-
-    font-size:60px;
-
-
-    animation:broken .15s infinite;
+    },200);
 
 
 }
@@ -496,117 +227,95 @@ section {
 
 
 
-/* VOID */
 
 
-#void {
+// 7 CLICKS ARCHIVE
 
 
-    display:none;
+logo.addEventListener("click",()=>{
 
 
-    position:fixed;
+    clicks++;
 
 
-    inset:0;
 
+    if(clicks==7){
 
-    background:white;
 
+        scaryFlash();
 
-    color:black;
 
 
-    z-index:10000;
+        setTimeout(()=>{
 
 
-    justify-content:center;
+            archive.style.display="flex";
 
 
-    align-items:center;
 
+        },700);
 
-    text-align:center;
 
 
-    font-size:80px;
+        setTimeout(()=>{
 
 
-    font-weight:bold;
+            archive.style.display="none";
 
 
-}
+        },7000);
 
 
 
+        clicks=0;
 
-
-
-
-/* RANDOM EVENTS */
-
-
-#event {
-
-
-    display:none;
-
-
-    position:fixed;
-
-
-    inset:0;
-
-
-    background:black;
-
-
-    color:white;
-
-
-    z-index:11000;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    font-size:70px;
-
-
-}
-
-
-
-
-
-
-
-.flash {
-
-    animation:flash .1s;
-
-}
-
-
-
-@keyframes flash {
-
-
-    from {
-
-        background:white;
 
     }
 
 
-    to {
 
-        background:black;
+});
 
-    }
+
+
+
+
+
+
+
+// ARCHIVE FLASH
+
+
+function scaryFlash(){
+
+
+    let count=0;
+
+
+
+    let flash=setInterval(()=>{
+
+
+        document.body.classList.toggle("flash");
+
+
+        count++;
+
+
+
+        if(count>10){
+
+
+            clearInterval(flash);
+
+            document.body.classList.remove("flash");
+
+
+        }
+
+
+    },80);
+
 
 }
 
@@ -615,50 +324,104 @@ section {
 
 
 
-@keyframes flicker {
 
 
-    0%,20%,40%,100% {
 
-        opacity:1;
+// ARTISTS
+
+
+document.querySelectorAll(".artist").forEach(card=>{
+
+
+    card.addEventListener("click",()=>{
+
+
+        eventScreen.style.display="flex";
+
+
+        eventScreen.innerHTML=
+
+        `
+
+FILE RECOVERED
+
+<br><br>
+
+${card.dataset.name}
+
+<br><br>
+
+STATUS: UNKNOWN
+
+`;
+
+
+
+        setTimeout(()=>{
+
+
+            eventScreen.style.display="none";
+
+
+        },3000);
+
+
+
+    });
+
+
+});
+
+
+
+
+
+
+
+
+// RANDOM SIGNALS
+
+
+let messages=[
+
+"SIGNAL LOST",
+
+"RECOVERING",
+
+"WHO IS ARCH?",
+
+"AUDIO RECOVERED"
+
+];
+
+
+
+setInterval(()=>{
+
+
+    if(Math.random()<0.07){
+
+
+        eventScreen.style.display="flex";
+
+
+        eventScreen.innerHTML=
+
+        messages[Math.floor(Math.random()*messages.length)];
+
+
+
+        setTimeout(()=>{
+
+
+            eventScreen.style.display="none";
+
+
+        },300);
+
+
 
     }
 
 
-    30% {
-
-        opacity:.2;
-
-    }
-
-}
-
-
-
-
-
-
-@keyframes broken {
-
-
-    0% {
-
-        transform:translate(0);
-
-    }
-
-
-    50% {
-
-        transform:translate(15px,-5px);
-
-    }
-
-
-    100% {
-
-        transform:translate(-10px,5px);
-
-    }
-
-}
+},6000);
