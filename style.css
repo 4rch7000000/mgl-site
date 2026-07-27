@@ -1,35 +1,54 @@
 * {
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
 
 
 body {
+
     margin:0;
+
     background:#000;
+
     color:#fff;
+
     font-family:monospace;
-    overflow-x:hidden;
+
+    overflow:hidden;
+
 }
 
 
-/* BOOT */
 
-#boot {
+
+
+/* SYSTEM START */
+
+#system {
+
     position:fixed;
+
     inset:0;
+
     background:#000;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
+    text-align:center;
+
+    font-size:22px;
+
+    letter-spacing:5px;
+
     z-index:99999;
-    animation:boot 3s forwards;
+
+    animation:boot 4s forwards;
+
 }
 
-
-#boot div {
-    font-size:20px;
-    letter-spacing:3px;
-}
 
 
 @keyframes boot {
@@ -38,35 +57,52 @@ body {
         opacity:1;
     }
 
+
     80% {
         opacity:1;
     }
 
+
     100% {
+
         opacity:0;
+
         pointer-events:none;
+
     }
 
 }
 
 
 
-/* SCANLINES */
+
+
+
+/* SCREEN EFFECTS */
+
 
 .scan {
 
     position:fixed;
+
     inset:0;
 
     background:
+
     repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(255,255,255,0.08) 4px
+
+    0deg,
+
+    transparent 0px,
+
+    transparent 3px,
+
+    rgba(255,255,255,.12) 4px
+
     );
 
-    z-index:10;
+    z-index:20;
+
     pointer-events:none;
 
 }
@@ -76,38 +112,59 @@ body {
 .noise {
 
     position:fixed;
+
     inset:0;
 
+    opacity:.05;
+
     background:
+
     repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 5px,
-        white 6px
+
+    90deg,
+
+    white 0px,
+
+    white 1px,
+
+    transparent 2px,
+
+    transparent 5px
+
     );
 
-    opacity:0.03;
+
     animation:noise .15s infinite;
 
 }
 
 
 
+
 @keyframes noise {
 
     0% {
+
         transform:translateX(0);
+
     }
+
 
     50% {
-        transform:translateX(10px);
+
+        transform:translateX(-10px);
+
     }
 
+
     100% {
-        transform:translateX(-10px);
+
+        transform:translateX(10px);
+
     }
 
 }
+
 
 
 
@@ -115,14 +172,16 @@ body {
 
 /* LOGO */
 
+
 #logo {
 
     position:fixed;
 
     top:20px;
+
     left:25px;
 
-    font-size:35px;
+    font-size:40px;
 
     cursor:pointer;
 
@@ -134,15 +193,30 @@ body {
 
 
 
+#clock {
+
+    position:fixed;
+
+    top:25px;
+
+    right:30px;
+
+    font-size:18px;
+
+}
+
+
+
 
 
 /* MAIN */
+
 
 main {
 
     text-align:center;
 
-    padding-top:130px;
+    padding-top:120px;
 
 }
 
@@ -150,9 +224,9 @@ main {
 
 h1 {
 
-    font-size:60px;
+    font-size:65px;
 
-    letter-spacing:10px;
+    letter-spacing:15px;
 
     animation:flicker 3s infinite;
 
@@ -160,9 +234,13 @@ h1 {
 
 
 
-h1::before {
 
-    content:attr(data-text);
+
+#status {
+
+    margin-top:30px;
+
+    opacity:.7;
 
 }
 
@@ -170,7 +248,7 @@ h1::before {
 
 
 
-/* CARDS */
+/* ARTISTS */
 
 
 section {
@@ -179,9 +257,9 @@ section {
 
     justify-content:center;
 
-    flex-wrap:wrap;
+    gap:25px;
 
-    gap:20px;
+    flex-wrap:wrap;
 
     margin-top:80px;
 
@@ -189,19 +267,22 @@ section {
 
 
 
-.card {
+
+.artist {
 
     width:180px;
 
-    height:100px;
+    height:120px;
 
     border:2px solid white;
 
     display:flex;
 
+    justify-content:center;
+
     align-items:center;
 
-    justify-content:center;
+    font-size:25px;
 
     cursor:pointer;
 
@@ -211,13 +292,15 @@ section {
 
 
 
-.card:hover {
+
+.artist:hover {
+
 
     background:white;
 
     color:black;
 
-    transform:skew(-10deg);
+    transform:skew(-12deg);
 
 }
 
@@ -225,10 +308,11 @@ section {
 
 
 
-/* SOUNDCLOUD */
+
+/* AUDIO */
 
 
-.soundcloud {
+#audio {
 
     margin-top:60px;
 
@@ -236,25 +320,26 @@ section {
 
 
 
-.soundcloud a {
+#audio a {
+
 
     display:inline-block;
 
-    margin-top:20px;
+    margin-top:15px;
 
-    padding:15px;
+    padding:12px 30px;
+
+    border:2px solid white;
 
     color:white;
 
     text-decoration:none;
 
-    border:2px solid white;
-
 }
 
 
 
-.soundcloud a:hover {
+#audio a:hover {
 
     background:white;
 
@@ -265,50 +350,66 @@ section {
 
 
 
-/* TERMINAL */
 
+#terminalHint {
 
-.fakeTerminal {
+    position:fixed;
 
-    margin-top:70px;
+    bottom:20px;
 
-    cursor:pointer;
+    left:25px;
+
+    opacity:.6;
 
 }
 
+
+
+
+
+/* TERMINAL */
 
 
 #terminal {
 
+
     display:none;
+
 
     position:fixed;
 
-    inset:10%;
 
-    background:#000;
+    inset:12%;
+
+
+    background:black;
+
 
     border:2px solid white;
 
+
     z-index:5000;
+
 
     padding:20px;
 
+
 }
 
 
 
-#terminal header {
+.terminalHead {
+
 
     border-bottom:1px solid white;
 
-    padding-bottom:10px;
+    padding-bottom:15px;
 
 }
 
 
 
-#terminal header span {
+.terminalHead span {
 
     float:right;
 
@@ -316,29 +417,34 @@ section {
 
 
 
+
 #terminalOutput {
 
     margin-top:20px;
+
+    line-height:25px;
 
 }
 
 
 
+
 #terminalInput {
 
-    margin-top:20px;
 
     width:100%;
 
     background:black;
 
-    color:white;
-
     border:none;
+
+    color:white;
 
     outline:none;
 
     font-family:monospace;
+
+    font-size:18px;
 
 }
 
@@ -351,29 +457,40 @@ section {
 
 #archive {
 
+
     display:none;
+
 
     position:fixed;
 
+
     inset:0;
 
-    background:black;
 
-    color:white;
+    background:#000;
+
 
     z-index:9000;
 
+
     justify-content:center;
+
 
     align-items:center;
 
+
     text-align:center;
 
-    font-size:50px;
 
-    animation:glitch .15s infinite;
+    font-size:60px;
+
+
+    animation:broken .15s infinite;
+
 
 }
+
+
 
 
 
@@ -382,51 +499,45 @@ section {
 /* VOID */
 
 
-#voidScreen {
+#void {
+
 
     display:none;
 
+
     position:fixed;
+
 
     inset:0;
 
+
     background:white;
+
 
     color:black;
 
-    z-index:9999;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    font-size:70px;
-
-    font-weight:bold;
-
-}
-
-
-
-
-
-/* FLASH */
-
-#flash {
-
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    background:white;
 
     z-index:10000;
 
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    text-align:center;
+
+
+    font-size:80px;
+
+
+    font-weight:bold;
+
+
 }
+
+
 
 
 
@@ -434,27 +545,36 @@ section {
 
 /* RANDOM EVENTS */
 
-.event {
+
+#event {
+
+
+    display:none;
+
 
     position:fixed;
 
+
     inset:0;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
 
     background:black;
 
+
     color:white;
 
-    font-size:60px;
 
-    z-index:8000;
+    z-index:11000;
 
-    animation:glitch .1s infinite;
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    font-size:70px;
+
 
 }
 
@@ -463,20 +583,40 @@ section {
 
 
 
-#glitchText {
 
-    text-align:center;
+.flash {
+
+    animation:flash .1s;
+
+}
+
+
+
+@keyframes flash {
+
+
+    from {
+
+        background:white;
+
+    }
+
+
+    to {
+
+        background:black;
+
+    }
 
 }
 
 
 
 
-
-/* ANIMATIONS */
 
 
 @keyframes flicker {
+
 
     0%,20%,40%,100% {
 
@@ -495,7 +635,11 @@ section {
 
 
 
-@keyframes glitch {
+
+
+
+@keyframes broken {
+
 
     0% {
 
@@ -503,11 +647,13 @@ section {
 
     }
 
+
     50% {
 
-        transform:translate(10px,-5px);
+        transform:translate(15px,-5px);
 
     }
+
 
     100% {
 
