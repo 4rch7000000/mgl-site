@@ -4,112 +4,265 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MGL // RECOVERED</title>
 
 <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
 
-<div id="system">
 
-MGL SYSTEM<br>
-RECOVERING DATA...
-<br><br>
-ACCESS GRANTED
+<!-- BOOT -->
+
+<div id="boot">
+
+<div class="bootContent">
+
+<div class="bootLogo">
+
+MGL SYSTEM
+
+</div>
+
+<div class="bootText">
+
+Recovering corrupted archive...
+
+</div>
+
+<div class="bootBar">
+
+<div id="bootFill"></div>
+
+</div>
+
+<div class="bootPercent">
+
+100%
+
+</div>
+
+</div>
 
 </div>
 
 
 
-<div class="scan"></div>
-<div class="noise"></div>
 
 
+<!-- SCREEN EFFECTS -->
+
+<div id="scanlines"></div>
+
+<div id="noise"></div>
+
+<div id="flash"></div>
+
+<div id="glitchLayer"></div>
+
+
+
+
+
+<!-- RANDOM MESSAGE -->
+
+<div id="randomMessage"></div>
+
+
+
+
+
+<!-- HEADER -->
+
+<header>
 
 <div id="logo">
+
 MGL
+
 </div>
 
+<nav>
+
+<button class="navButton">
+
+ARTISTS
+
+</button>
+
+<button class="navButton">
+
+DATABASE
+
+</button>
+
+<button class="navButton">
+
+AUDIO
+
+</button>
+
+<button class="navButton">
+
+INFO
+
+</button>
+
+</nav>
+
+</header>
 
 
-<div id="clock">
-03:33:33
-</div>
 
 
+
+<!-- MAIN -->
 
 <main>
 
-
 <h1>
+
 MY GIRLFRIEND LABEL
+
 </h1>
 
+<p class="subtitle">
 
+RECOVERED DATABASE // UNKNOWN CONDITION
 
-<div id="status">
-
-DATABASE:
-UNKNOWN
-
-<br>
-
-SIGNAL:
-UNSTABLE
-
-</div>
+</p>
 
 
 
 
-<section>
 
+<section id="artists">
 
-<div class="artist" data-name="ARCH">
+<div class="artist" data-page="arch">
+
+<div class="artistName">
 
 ARCH
 
 </div>
 
+<div class="artistStatus">
 
-<div class="artist" data-name="NASTY">
+STATUS :
+UNKNOWN
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="artist" data-page="nasty">
+
+<div class="artistName">
 
 NASTY
 
 </div>
 
+<div class="artistStatus">
 
-<div class="artist" data-name="CODE31">
+STATUS :
+ACTIVE
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="artist" data-page="code31">
+
+<div class="artistName">
 
 CODE31
 
 </div>
 
+<div class="artistStatus">
 
-<div class="artist" data-name="TWELVE">
+STATUS :
+LOST
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="artist" data-page="twelve">
+
+<div class="artistName">
 
 TWELVE
 
 </div>
 
+<div class="artistStatus">
 
-<div class="artist" data-name="STYLE">
+STATUS :
+RECOVERED
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="artist" data-page="style">
+
+<div class="artistName">
 
 STYLE
 
 </div>
 
+<div class="artistStatus">
 
-<div class="artist" data-name="PS4">
+STATUS :
+UNKNOWN
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="artist" data-page="ps4">
+
+<div class="artistName">
 
 PS4
 
 </div>
 
+<div class="artistStatus">
+
+STATUS :
+ACTIVE
+
+</div>
+
+</div>
 
 </section>
 
@@ -117,64 +270,116 @@ PS4
 
 
 
-<div id="audio">
+<section id="audioDatabase">
 
-AUDIO ARCHIVE
+<h2>
 
-<br><br>
+AUDIO DATABASE
 
-<a href="https://soundcloud.com/hskaowkebeg-shia" target="_blank">
+</h2>
 
-OPEN SOUND
+<a
+href="https://soundcloud.com/hskaowkebeg-shia"
+target="_blank"
+class="audioButton">
+
+OPEN SOUNDCLOUD ARCHIVE
 
 </a>
 
-</div>
+</section>
 
-
+<!-- TERMINAL HINT -->
 
 <div id="terminalHint">
 
-PRESS T // TERMINAL
+PRESS <b>T</b> TO OPEN TERMINAL
 
 </div>
 
 
 
-</main>
 
 
-
-
-
-
+<!-- TERMINAL -->
 
 <div id="terminal">
 
+<div class="terminalHeader">
 
-<div class="terminalHead">
+<span>MGL FAKE TERMINAL</span>
 
-MGL FAKE TERMINAL
+<span class="terminalExit">
 
-<span>
-CTRL TO EXIT
+CTRL = EXIT
+
 </span>
 
 </div>
 
-
 <div id="terminalOutput">
 
-MGL_OS READY
+> MGL TERMINAL READY
 
 <br>
+
+> TYPE >help
+
+</div>
+
+<input
+id="terminalInput"
+type="text"
+autocomplete="off"
+spellcheck="false"
 >
 
 </div>
 
 
-<input id="terminalInput" autocomplete="off">
 
+
+
+<!-- ARTIST PAGE -->
+
+<div id="artistPage">
+
+<div class="artistWindow">
+
+<div class="artistTop">
+
+<span id="artistTitle">
+
+ARCH
+
+</span>
+
+<button id="closeArtist">
+
+X
+
+</button>
+
+</div>
+
+<div id="artistContent">
+
+STATUS:
+UNKNOWN
+
+<br><br>
+
+LAST SIGNAL:
+CORRUPTED
+
+<br><br>
+
+FILES:
+12
+
+</div>
+
+</div>
 
 </div>
 
@@ -182,24 +387,33 @@ MGL_OS READY
 
 
 
+<!-- ARCHIVE -->
 
 <div id="archive">
 
+<div class="archiveBox">
+
+<h1>
 
 ARCHIVE RECOVERED
 
-<br><br>
+</h1>
 
-WARNING:
+<p>
+
+WARNING
 
 <br>
 
-CORRUPTED DATA
+CORRUPTED DATABASE
 
-<br><br>
+<br>
 
 DO NOT RESTORE
 
+</p>
+
+</div>
 
 </div>
 
@@ -207,16 +421,55 @@ DO NOT RESTORE
 
 
 
+<!-- VOID -->
 
-<div id="void">
+<div id="voidScreen">
 
+<div id="voidText">
 
 THEY ARE DEAD.
 
+<br>
+
+THEY ARE GONE.
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- BIOS -->
+
+<div id="bios">
+
+<div class="biosText">
+
+MGL BIOS v0.3
+
 <br><br>
 
-THERE ARE GONE.
+MEMORY........OK
 
+<br>
+
+VIDEO.........FAIL
+
+<br>
+
+AUDIO.........OK
+
+<br>
+
+ARCHIVE.......FOUND
+
+<br>
+
+BOOTING...
+
+</div>
 
 </div>
 
@@ -224,12 +477,39 @@ THERE ARE GONE.
 
 
 
+<!-- RANDOM FULLSCREEN EVENT -->
 
-<div id="event">
+<div id="eventScreen">
 
+<div id="eventText">
+
+SIGNAL LOST
 
 </div>
 
+</div>
+
+
+
+
+
+<!-- SECRET 404 -->
+
+<div id="secret404">
+
+<h1>
+
+404
+
+</h1>
+
+<p>
+
+YOU WERE NOT SUPPOSED TO SEE THIS
+
+</p>
+
+</div>
 
 
 
