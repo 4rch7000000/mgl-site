@@ -1,29 +1,559 @@
-* {
+/* ===========================
+   MGL // RECOVERED
+   =========================== */
+
+*{
+    margin:0;
+    padding:0;
     box-sizing:border-box;
 }
 
+html,body{
+    width:100%;
+    height:100%;
+}
 
-body {
+body{
 
-    margin:0;
+    background:#000;
+    color:#fff;
+
+    font-family:Consolas,monospace;
+
+    overflow:hidden;
+
+    user-select:none;
+
+}
+
+
+/* --------------------------
+BOOT
+-------------------------- */
+
+#boot{
+
+    position:fixed;
+
+    inset:0;
 
     background:#000;
 
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+}
+
+
+.bootContent{
+
+    width:520px;
+
+}
+
+
+.bootLogo{
+
+    font-size:36px;
+
+    letter-spacing:10px;
+
+    margin-bottom:40px;
+
+}
+
+
+.bootText{
+
+    margin-bottom:20px;
+
+    font-size:15px;
+
+    opacity:.8;
+
+}
+
+
+.bootBar{
+
+    width:100%;
+
+    height:16px;
+
+    border:2px solid #fff;
+
+}
+
+
+#bootFill{
+
+    width:0%;
+
+    height:100%;
+
+    background:#fff;
+
+}
+
+
+.bootPercent{
+
+    margin-top:15px;
+
+    text-align:right;
+
+}
+
+
+/* --------------------------
+HEADER
+-------------------------- */
+
+header{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:70px;
+
+    border-bottom:1px solid #fff;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 30px;
+
+    background:#000;
+
+    z-index:100;
+
+}
+
+
+#logo{
+
+    font-size:34px;
+
+    letter-spacing:8px;
+
+    cursor:pointer;
+
+}
+
+
+nav{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+.navButton{
+
+    background:none;
+
     color:#fff;
 
-    font-family:monospace;
+    border:1px solid #fff;
+
+    padding:10px 18px;
+
+    cursor:pointer;
+
+    transition:.15s;
+
+}
+
+
+.navButton:hover{
+
+    background:#fff;
+
+    color:#000;
+
+}
+
+
+/* --------------------------
+MAIN
+-------------------------- */
+
+main{
+
+    width:100%;
+
+    height:100%;
+
+    overflow-y:auto;
+
+    padding-top:130px;
+
+    padding-bottom:120px;
+
+}
+
+
+h1{
+
+    text-align:center;
+
+    font-size:64px;
+
+    letter-spacing:14px;
+
+    margin-bottom:15px;
+
+}
+
+
+.subtitle{
+
+    text-align:center;
+
+    opacity:.6;
+
+    margin-bottom:70px;
+
+}
+/* ===========================
+   ARTISTS
+=========================== */
+
+#artists{
+
+    width:1200px;
+    max-width:95%;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+.artist{
+
+    border:2px solid #fff;
+
+    min-height:170px;
+
+    padding:25px;
+
+    cursor:pointer;
+
+    transition:.15s;
+
+    position:relative;
 
     overflow:hidden;
 
 }
 
 
+.artist::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:#fff;
+
+    transform:translateX(-100%);
+
+    transition:.15s;
+
+    z-index:0;
+
+}
+
+
+.artist:hover::before{
+
+    transform:translateX(0);
+
+}
+
+
+.artist:hover{
+
+    color:#000;
+
+}
+
+
+.artist>*{
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+.artistName{
+
+    font-size:34px;
+
+    letter-spacing:6px;
+
+    margin-bottom:35px;
+
+}
+
+
+.artistStatus{
+
+    opacity:.7;
+
+    line-height:24px;
+
+}
 
 
 
-/* SYSTEM START */
+/* ===========================
+AUDIO
+=========================== */
 
-#system {
+#audioDatabase{
+
+    width:900px;
+
+    max-width:95%;
+
+    margin:120px auto;
+
+    text-align:center;
+
+}
+
+
+#audioDatabase h2{
+
+    font-size:36px;
+
+    margin-bottom:35px;
+
+    letter-spacing:8px;
+
+}
+
+
+.audioButton{
+
+    display:inline-block;
+
+    border:2px solid #fff;
+
+    padding:18px 35px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    transition:.15s;
+
+}
+
+
+.audioButton:hover{
+
+    background:#fff;
+
+    color:#000;
+
+}
+
+
+
+/* ===========================
+TERMINAL
+=========================== */
+
+#terminalHint{
+
+    position:fixed;
+
+    left:25px;
+
+    bottom:20px;
+
+    opacity:.55;
+
+    font-size:14px;
+
+}
+
+
+#terminal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:8%;
+
+    background:#000;
+
+    border:2px solid #fff;
+
+    z-index:7000;
+
+    padding:20px;
+
+}
+
+
+.terminalHeader{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    border-bottom:1px solid #fff;
+
+    padding-bottom:12px;
+
+    margin-bottom:20px;
+
+}
+
+
+#terminalOutput{
+
+    height:82%;
+
+    overflow:auto;
+
+    white-space:pre-wrap;
+
+    line-height:24px;
+
+}
+
+
+#terminalInput{
+
+    width:100%;
+
+    margin-top:20px;
+
+    background:#000;
+
+    color:#fff;
+
+    border:none;
+
+    outline:none;
+
+    font-family:inherit;
+
+    font-size:17px;
+
+}
+
+
+
+/* ===========================
+ARTIST WINDOW
+=========================== */
+
+#artistPage{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.95);
+
+    z-index:6000;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.artistWindow{
+
+    width:850px;
+
+    max-width:90%;
+
+    border:2px solid #fff;
+
+}
+
+
+.artistTop{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    border-bottom:2px solid #fff;
+
+    padding:20px;
+
+}
+
+
+#closeArtist{
+
+    background:none;
+
+    color:#fff;
+
+    border:1px solid #fff;
+
+    width:40px;
+
+    height:40px;
+
+    cursor:pointer;
+
+}
+
+
+#artistContent{
+
+    padding:35px;
+
+    line-height:34px;
+
+}
+
+/* ===========================
+ARCHIVE
+=========================== */
+
+#archive{
+
+    display:none;
 
     position:fixed;
 
@@ -31,7 +561,66 @@ body {
 
     background:#000;
 
-    display:flex;
+    z-index:9000;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.archiveBox{
+
+    width:900px;
+
+    max-width:90%;
+
+    border:3px solid #fff;
+
+    padding:60px;
+
+    text-align:center;
+
+}
+
+.archiveBox h1{
+
+    font-size:72px;
+
+    letter-spacing:10px;
+
+    margin-bottom:40px;
+
+}
+
+.archiveBox p{
+
+    font-size:22px;
+
+    line-height:42px;
+
+}
+
+
+
+
+/* ===========================
+VOID
+=========================== */
+
+#voidScreen{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:#fff;
+
+    color:#000;
+
+    z-index:9999;
 
     justify-content:center;
 
@@ -39,572 +628,261 @@ body {
 
     text-align:center;
 
-    font-size:22px;
-
-    letter-spacing:5px;
-
-    z-index:99999;
-
-    animation:boot 4s forwards;
-
 }
 
+#voidText{
 
+    font-size:82px;
 
-@keyframes boot {
+    font-weight:bold;
 
-    0% {
-        opacity:1;
-    }
-
-
-    80% {
-        opacity:1;
-    }
-
-
-    100% {
-
-        opacity:0;
-
-        pointer-events:none;
-
-    }
+    letter-spacing:8px;
 
 }
 
 
 
 
+/* ===========================
+EVENTS
+=========================== */
 
+#eventScreen{
 
-/* SCREEN EFFECTS */
-
-
-.scan {
+    display:none;
 
     position:fixed;
 
     inset:0;
 
-    background:
+    background:#000;
 
-    repeating-linear-gradient(
+    color:#fff;
 
-    0deg,
+    justify-content:center;
 
-    transparent 0px,
+    align-items:center;
 
-    transparent 3px,
+    text-align:center;
 
-    rgba(255,255,255,.12) 4px
+    z-index:9500;
 
-    );
+}
 
-    z-index:20;
+#eventText{
+
+    font-size:70px;
+
+    letter-spacing:12px;
+
+}
+
+
+
+
+/* ===========================
+BIOS
+=========================== */
+
+#bios{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:#000;
+
+    z-index:9200;
+
+    padding:60px;
+
+}
+
+.biosText{
+
+    font-size:26px;
+
+    line-height:42px;
+
+}
+
+
+
+
+/* ===========================
+404
+=========================== */
+
+#secret404{
+
+    display:none;
+
+}
+
+
+
+
+/* ===========================
+SCANLINES
+=========================== */
+
+#scanlines{
+
+    position:fixed;
+
+    inset:0;
 
     pointer-events:none;
 
+    z-index:999;
+
+    opacity:.18;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        white 4px
+    );
+
 }
 
 
 
-.noise {
+
+/* ===========================
+NOISE
+=========================== */
+
+#noise{
 
     position:fixed;
 
     inset:0;
 
-    opacity:.05;
+    pointer-events:none;
 
-    background:
+    opacity:.035;
 
+    z-index:998;
+
+    background-image:
     repeating-linear-gradient(
-
-    90deg,
-
-    white 0px,
-
-    white 1px,
-
-    transparent 2px,
-
-    transparent 5px
-
+        90deg,
+        transparent 0,
+        transparent 2px,
+        white 3px,
+        transparent 4px
     );
 
-
-    animation:noise .15s infinite;
+    animation:noiseMove .08s infinite;
 
 }
 
 
 
 
-@keyframes noise {
+/* ===========================
+FLASH
+=========================== */
 
-    0% {
+#flash{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#fff;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:99999;
+
+}
+
+
+
+
+/* ===========================
+GLITCH
+=========================== */
+
+#glitchLayer{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    mix-blend-mode:screen;
+
+    opacity:0;
+
+    z-index:997;
+
+}
+
+
+
+
+/* ===========================
+RANDOM MESSAGE
+=========================== */
+
+#randomMessage{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:70px;
+
+    letter-spacing:8px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:9600;
+
+}
+
+
+
+
+/* ===========================
+ANIMATIONS
+=========================== */
+
+@keyframes noiseMove{
+
+    0%{
 
         transform:translateX(0);
 
     }
 
+    50%{
 
-    50% {
-
-        transform:translateX(-10px);
-
-    }
-
-
-    100% {
-
-        transform:translateX(10px);
+        transform:translateX(-20px);
 
     }
 
-}
+    100%{
 
-
-
-
-
-
-/* LOGO */
-
-
-#logo {
-
-    position:fixed;
-
-    top:20px;
-
-    left:25px;
-
-    font-size:40px;
-
-    cursor:pointer;
-
-    z-index:100;
-
-    animation:flicker 2s infinite;
-
-}
-
-
-
-#clock {
-
-    position:fixed;
-
-    top:25px;
-
-    right:30px;
-
-    font-size:18px;
-
-}
-
-
-
-
-
-/* MAIN */
-
-
-main {
-
-    text-align:center;
-
-    padding-top:120px;
-
-}
-
-
-
-h1 {
-
-    font-size:65px;
-
-    letter-spacing:15px;
-
-    animation:flicker 3s infinite;
-
-}
-
-
-
-
-
-#status {
-
-    margin-top:30px;
-
-    opacity:.7;
-
-}
-
-
-
-
-
-/* ARTISTS */
-
-
-section {
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:25px;
-
-    flex-wrap:wrap;
-
-    margin-top:80px;
-
-}
-
-
-
-
-.artist {
-
-    width:180px;
-
-    height:120px;
-
-    border:2px solid white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:25px;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-
-
-.artist:hover {
-
-
-    background:white;
-
-    color:black;
-
-    transform:skew(-12deg);
-
-}
-
-
-
-
-
-
-/* AUDIO */
-
-
-#audio {
-
-    margin-top:60px;
-
-}
-
-
-
-#audio a {
-
-
-    display:inline-block;
-
-    margin-top:15px;
-
-    padding:12px 30px;
-
-    border:2px solid white;
-
-    color:white;
-
-    text-decoration:none;
-
-}
-
-
-
-#audio a:hover {
-
-    background:white;
-
-    color:black;
-
-}
-
-
-
-
-
-#terminalHint {
-
-    position:fixed;
-
-    bottom:20px;
-
-    left:25px;
-
-    opacity:.6;
-
-}
-
-
-
-
-
-/* TERMINAL */
-
-
-#terminal {
-
-
-    display:none;
-
-
-    position:fixed;
-
-
-    inset:12%;
-
-
-    background:black;
-
-
-    border:2px solid white;
-
-
-    z-index:5000;
-
-
-    padding:20px;
-
-
-}
-
-
-
-.terminalHead {
-
-
-    border-bottom:1px solid white;
-
-    padding-bottom:15px;
-
-}
-
-
-
-.terminalHead span {
-
-    float:right;
-
-}
-
-
-
-
-#terminalOutput {
-
-    margin-top:20px;
-
-    line-height:25px;
-
-}
-
-
-
-
-#terminalInput {
-
-
-    width:100%;
-
-    background:black;
-
-    border:none;
-
-    color:white;
-
-    outline:none;
-
-    font-family:monospace;
-
-    font-size:18px;
-
-}
-
-
-
-
-
-/* ARCHIVE */
-
-
-#archive {
-
-
-    display:none;
-
-
-    position:fixed;
-
-
-    inset:0;
-
-
-    background:#000;
-
-
-    z-index:9000;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    text-align:center;
-
-
-    font-size:60px;
-
-
-    animation:broken .15s infinite;
-
-
-}
-
-
-
-
-
-
-
-/* VOID */
-
-
-#void {
-
-
-    display:none;
-
-
-    position:fixed;
-
-
-    inset:0;
-
-
-    background:white;
-
-
-    color:black;
-
-
-    z-index:10000;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    text-align:center;
-
-
-    font-size:80px;
-
-
-    font-weight:bold;
-
-
-}
-
-
-
-
-
-
-
-/* RANDOM EVENTS */
-
-
-#event {
-
-
-    display:none;
-
-
-    position:fixed;
-
-
-    inset:0;
-
-
-    background:black;
-
-
-    color:white;
-
-
-    z-index:11000;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    font-size:70px;
-
-
-}
-
-
-
-
-
-
-
-.flash {
-
-    animation:flash .1s;
-
-}
-
-
-
-@keyframes flash {
-
-
-    from {
-
-        background:white;
-
-    }
-
-
-    to {
-
-        background:black;
+        transform:translateX(20px);
 
     }
 
@@ -612,22 +890,29 @@ section {
 
 
 
+@keyframes flicker{
 
-
-
-@keyframes flicker {
-
-
-    0%,20%,40%,100% {
+    0%,100%{
 
         opacity:1;
 
     }
 
+    48%{
 
-    30% {
+        opacity:.35;
 
-        opacity:.2;
+    }
+
+    50%{
+
+        opacity:1;
+
+    }
+
+    52%{
+
+        opacity:.15;
 
     }
 
@@ -635,29 +920,59 @@ section {
 
 
 
+@keyframes glitchShake{
 
-
-
-@keyframes broken {
-
-
-    0% {
+    0%{
 
         transform:translate(0);
 
     }
 
+    20%{
 
-    50% {
-
-        transform:translate(15px,-5px);
+        transform:translate(-6px,3px);
 
     }
 
+    40%{
 
-    100% {
+        transform:translate(5px,-3px);
 
-        transform:translate(-10px,5px);
+    }
+
+    60%{
+
+        transform:translate(-4px,-4px);
+
+    }
+
+    80%{
+
+        transform:translate(4px,4px);
+
+    }
+
+    100%{
+
+        transform:translate(0);
+
+    }
+
+}
+
+
+
+@keyframes flashWhite{
+
+    0%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:0;
 
     }
 
